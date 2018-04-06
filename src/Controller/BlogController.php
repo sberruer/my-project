@@ -8,12 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class BlogController extends Controller
 {
     /**
-     * @Route("/blog", name="blog")
+     * @Route("/blog/{page}", name="blog", requirements={"page"="\d+"})
      */
-    public function index()
+    public function index($page)
     {
         return $this->render('blog/index.html.twig', [
             'controller_name' => 'BlogController',
+            'page_number' => $page
         ]);
     }
     
