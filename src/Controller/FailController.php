@@ -18,4 +18,16 @@ class FailController extends Controller
             'controller_name' => 'FailController',
         ]);
     }
+    
+    /**
+     * @Route("/fail_hard", name="fail")
+     */
+    public function fail_hard()
+    {
+        throw new \Exception("Exemple de grosse exception");
+        
+        return $this->render('fail/index.html.twig', [
+            'controller_name' => 'FailController',
+        ]);
+    }
 }
