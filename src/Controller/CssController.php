@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CssController extends Controller
 {
@@ -20,12 +21,16 @@ class CssController extends Controller
         
         $hostname = $request->headers->get("host");
         
-        return $this->render('css/index.html.twig', [
-            'controller_name' => 'CssController',
-            'page_number' => $page,
-            'name' => $name,
-            'cookie_content' => $cookie,
-            'hostname' => $hostname
-        ]);
+//         return $this->render('css/index.html.twig', [
+//             'controller_name' => 'CssController',
+//             'page_number' => $page,
+//             'name' => $name,
+//             'cookie_content' => $cookie,
+//             'hostname' => $hostname
+//         ]);
+        
+        $response = new Response('<style>...</style>');
+        $response->headers->set("content-type", "text/css");
+        return $response;
     }
 }
