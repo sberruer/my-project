@@ -11,8 +11,10 @@ class LuckyController extends Controller
     /**
      * @Route("/lucky/number")
      */
-    public function number() {
+    public function number(LoggerInterface $logger) {
         $number = mt_rand(0, 100);
+        
+        $logger->info("We are logging");
         
         return $this->render("lucky/number.html.twig", ['number' => $number]);
     }
@@ -23,7 +25,7 @@ class LuckyController extends Controller
     public function numberWithMax($max, LoggerInterface $logger) {
         $number = mt_rand(0, $max);
         
-        $logger->info("We are logging");
+        $logger->info("We are logging {value}", ["value" => $number]);
         
         return $this->render("lucky/number.html.twig", ['number' => $number]);
     }
