@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use App\Service\MessageGenerator;
 
 class BlogController extends Controller
 {
@@ -23,11 +24,16 @@ class BlogController extends Controller
      *
      * @Route("/blog/{slug}", name="blog_show")
      */
-    public function show($slug)
+    public function show($slug, MessageGenerator $messageGenerator)
     {
+        $message = $messageGenerator->getHappyMessage();
+        
+        $this->addFlash("notice", $message);
+        
         return $this->render('blog/detail.html.twig', [
             'controller_name' => 'BlogController',
             'slug' => $slug
         ]);
     }
+    
 }
