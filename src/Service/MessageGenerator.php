@@ -1,8 +1,16 @@
 <?php
 namespace App\Service;
 
+use Psr\Log\LoggerInterface;
+
 class MessageGenerator
 {
+    private $logger;
+    
+    public function __construct(LoggerInterface $logger) {
+        $this->logger = $logger;
+    }
+    
     public function getHappyMessage() {
         $messages = [
             'You did it! You updated the system! Amazing!',
@@ -11,6 +19,8 @@ class MessageGenerator
         ];
         
         $index = array_rand($messages);
+        
+        $this->logger->info("About to output message {message}", ["message" => $messages[$index]]);
         
         return $messages[$index];
     }
