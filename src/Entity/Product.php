@@ -76,4 +76,16 @@ class Product
 
         return $this;
     }
+
+    public function getBargain(): ?bool
+    {
+        return $this->bargain;
+    }
+
+    public function setBargain(bool $bargain): self
+    {
+        $this->bargain = $bargain;
+
+        return $this;
+    }
 }
