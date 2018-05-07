@@ -30,6 +30,11 @@ class Product
      * @ORM\Column(type="text")
      */
     private $description;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $bargain;
 
     public function getId()
     {
