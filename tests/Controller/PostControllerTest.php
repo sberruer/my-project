@@ -10,9 +10,10 @@ class PostControllerTest extends WebTestCase
     public function testShowPost() {
         $client = static::createClient();
         
-        $client->request('GET', '/lucky/number');
+        $crawler = $client->request('GET', '/lucky/number');
         
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertGreaterThan(0, $crawler->filter('html:contains("number")')->count());
     }
     
 }
